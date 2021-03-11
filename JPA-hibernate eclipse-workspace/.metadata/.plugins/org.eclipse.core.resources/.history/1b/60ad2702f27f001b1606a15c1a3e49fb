@@ -1,0 +1,78 @@
+package com.cg.jh02.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employees3")
+public class Employee implements Serializable {
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "emp_id")
+	private Long empId;
+
+	@Column(name = "first_name",length=15)
+	private String firstName;
+	
+	@Column(name = "last_name",length=15)
+	private String lastName;
+	
+	@OneToOne
+	private Laptop laptop;
+
+	public Employee() {
+		/* default constructor */
+	}
+
+	public Employee(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public Long getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(Long empId) {
+		this.empId = empId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("empId=%s, firstName=%s, lastName=%s, laptop=%s", empId, firstName, lastName,
+				laptop);
+	}
+	
+
+	
+}

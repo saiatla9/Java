@@ -1,0 +1,33 @@
+package com.cg.jha.ui;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import com.cg.jha.entity.Employee;
+import com.cg.jha.util.JPAUtil;
+
+public class App02 {
+	public static void main(String[] args) {
+		EntityManager em = JPAUtil.getEntityManager();
+		String selectAll = "SELECT e FROM Employee e";
+		
+		TypedQuery <Employee> tq = em.createQuery(selectAll,Employee.class);
+		List <Employee> employeesAll = tq.getResultList();
+		
+		if(employeesAll.isEmpty()) {
+			
+			System.out.println("No employees to list");
+			
+		} else {
+			
+			employeesAll.forEach(System.out::println);
+			
+		}
+		
+		
+	}
+
+
+}

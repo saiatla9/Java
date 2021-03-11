@@ -1,0 +1,5 @@
+package com.cg.bsc.util;
+
+public class ConnectionProvider {
+
+}

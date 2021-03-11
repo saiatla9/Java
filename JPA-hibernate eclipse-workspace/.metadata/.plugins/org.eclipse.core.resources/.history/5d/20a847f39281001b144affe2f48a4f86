@@ -1,0 +1,129 @@
+package com.cg.jhbsm.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
+import com.cg.jhbsm.entity.Book;
+import com.cg.jhbsm.exception.BookStoreException;
+import com.cg.jhbsm.util.JPAUtil;
+
+public class BookDAOJPAImpl implements IBookDAO{
+
+	 EntityManager em;
+     
+     
+	 public BookDAOJPAImpl() throws BookStoreException {
+         em = JPAUtil.getEntityManager();
+     }
+
+
+	@Override
+	public String add(Book book) throws BookStoreException {
+try {
+			
+			if (book != null) {
+				
+				EntityTransaction insert = em.getTransaction();
+				insert.begin();
+				em.persist(book);
+				insert.commit();
+				
+			}
+			
+		} catch(Exception e) {
+			
+			throw new BookStoreException("Book was not inserted");
+			
+		}
+		
+		return book.getBcode();
+		
+	}	
+
+
+	@Override
+	public boolean delete(String bcode) throws BookStoreException {
+		boolean isDone = false;
+		 Book b = em.find(Book.class, bcode);
+         if (b != null) {
+             EntityTransaction txn = em.getTransaction();
+             txn.begin();
+             em.remove(b);
+             txn.commit();
+         }
+		return isDone;
+	}
+
+
+	@Override
+	public Book get(String bcode) throws BookStoreException {
+Book b = null;
+		
+		try {
+			
+			b = em.find(Book.class, bcode);
+			
+		} catch (Exception e) {
+			
+			throw new BookStoreException("Book not found");
+			
+		}
+		
+		return b;
+	}
+
+
+	@Override
+	public List<Book> getAll() throws BookStoreException {
+List <Book> books;
+		
+		try {
+			
+			String selectAll = "SELECT b FROM Book b";
+			
+			TypedQuery <Book> tq = em.createQuery(selectAll,Book.class);
+			books = tq.getResultList();
+			
+		} catch(Exception e) {
+			
+			throw new BookStoreException("No books");
+			
+		}
+		
+		return books;
+	}
+
+
+	@Override
+	public boolean update(Book book) throws BookStoreException {
+		boolean isDone = false;
+		if (book != null) {
+			try {
+				
+				EntityTransaction update = em.getTransaction();
+				update.begin();
+				em.merge(book);
+				update.commit();
+				isDone = true;
+				
+				
+			} catch (Exception e) {
+				
+				throw new BookStoreException("Book is not updated.");
+			}
+		}
+		
+		return isDone;
+	}
+
+
+	@Override
+	public void persist() throws BookStoreException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

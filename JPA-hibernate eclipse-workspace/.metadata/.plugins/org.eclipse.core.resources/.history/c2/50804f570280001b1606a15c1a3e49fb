@@ -1,0 +1,5 @@
+package com.cg.jha.model;
+
+public class Address {
+
+}

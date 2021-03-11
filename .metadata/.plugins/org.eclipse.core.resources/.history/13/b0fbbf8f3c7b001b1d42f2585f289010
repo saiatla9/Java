@@ -1,0 +1,5 @@
+package com.cg.em.service;
+
+public class LocationComparator {
+
+}

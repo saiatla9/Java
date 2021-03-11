@@ -1,0 +1,64 @@
+package com.cg.jh02.entity;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "student2")
+public class Student implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "student_id")
+	private Long student_id;
+	
+	@Column(name = "student_name")
+	private String studentName;
+	
+	public Student() {
+		super();
+	}
+
+	public Student(Long student_id, String studentName) {
+		super();
+		this.student_id = student_id;
+		this.studentName = studentName;
+	}
+
+	public Long getStudent_id() {
+		return student_id;
+	}
+
+	
+	public String getStudentName() {
+		return studentName;
+	}
+
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("Student [student_id=%s, name=%s]", student_id, studentName);
+	}
+	
+	
+	
+//	@ManyToOne
+//	@JoinColumn(name = "course_id")
+//	private Course course;
+	
+	
+
+}

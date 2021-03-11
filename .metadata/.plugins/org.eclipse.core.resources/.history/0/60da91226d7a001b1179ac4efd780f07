@@ -1,0 +1,5 @@
+package com.cg.bsc.exception;
+
+public class BookStoreException {
+
+}

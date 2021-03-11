@@ -1,0 +1,30 @@
+package com.cg.idx.ui;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.cg.idx.service.GreetServiceImpl;
+import com.cg.idx.service.IGreetService;
+
+public class App1 {
+
+	public static void main(String[] args) {
+		GreetServiceImpl gs1 = new GreetServiceImpl();
+		System.out.println(gs1.getGreeting("Bhargava"));
+		
+		//program to interface method
+		IGreetService gs2 = new GreetServiceImpl();
+		System.out.println(gs2.getGreeting("Amrutha"));
+		
+		// Spring Container - IoC - Spring way
+		//ClassPath means src/main
+		ApplicationContext context = new ClassPathXmlApplicationContext("beans1.xml");
+		IGreetService gs3 = (GreetServiceImpl)context.getBean("gsBean");
+		System.out.println(gs3.getGreeting("Bhargava"));
+		
+		((AbstractApplicationContext) context).close();
+		
+	}
+
+}

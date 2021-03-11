@@ -1,0 +1,13 @@
+package com.cg.idx.ui;
+
+import com.cg.idx.service.GreetServiceImpl;
+
+public class App1 {
+
+	public static void main(String[] args) {
+		GreetServiceImpl gsi = new GreetServiceImpl();
+		System.out.println(gsi.getGreeting("Bhargava"));
+
+	}
+
+}

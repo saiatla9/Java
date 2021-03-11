@@ -1,0 +1,5 @@
+package com.cg.jhbsm.dao;
+
+public interface IBokkDAO {
+
+}

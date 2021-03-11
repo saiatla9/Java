@@ -1,0 +1,5 @@
+package com.cg.jhbsm.service;
+
+public class BookServiceImpl {
+
+}

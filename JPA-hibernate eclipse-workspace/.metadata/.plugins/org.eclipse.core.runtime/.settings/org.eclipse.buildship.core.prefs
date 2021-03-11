@@ -1,0 +1,10 @@
+arguments=
+auto.sync=false
+eclipse.preferences.version=1
+gradle.build.scans=false
+gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
+gradle.offline.mode=false
+java.home=C\:\\Program Files (x86)\\Java\\jdk1.8.0_281
+jvm.arguments=
+show.console.view=true
+show.executions.view=true

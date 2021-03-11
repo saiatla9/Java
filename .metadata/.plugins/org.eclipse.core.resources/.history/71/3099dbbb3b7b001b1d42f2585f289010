@@ -1,0 +1,5 @@
+package com.cg.em.model;
+
+public enum EventManagementMenu {
+
+}

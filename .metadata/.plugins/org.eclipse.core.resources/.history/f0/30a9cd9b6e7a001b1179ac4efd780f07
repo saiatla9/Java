@@ -1,0 +1,5 @@
+package com.cg.bsc.dao;
+
+public interface IBookDAO {
+
+}

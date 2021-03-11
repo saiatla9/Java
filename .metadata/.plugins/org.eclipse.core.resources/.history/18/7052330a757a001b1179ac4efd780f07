@@ -1,0 +1,7 @@
+package com.cg.bsc.exception;
+
+public class BookStoreException extends Exception {
+	public BookStoreException(String errMsg){
+		super(errMsg);
+	}
+}

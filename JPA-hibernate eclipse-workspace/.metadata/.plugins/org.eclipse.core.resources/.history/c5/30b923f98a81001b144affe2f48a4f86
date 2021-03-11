@@ -1,0 +1,96 @@
+package com.cg.jhbsm.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+
+import com.cg.jhbsm.entity.Employee;
+import com.cg.jhbsm.entity.Book;
+import com.cg.jhbsm.exception.BookStoreException;
+import com.cg.jhbsm.util.JPAUtil;
+
+public class BookDAOJPAImpl implements IBookDAO{
+
+	 EntityManager em;
+     
+     
+	 public BookDAOJPAImpl() throws BookStoreException {
+         em = JPAUtil.getEntityManager();
+     }
+
+
+	@Override
+	public String add(Book book) throws BookStoreException {
+		EntityTransaction txn = em.getTransaction();
+        txn.begin();
+        em.persist(book);
+        txn.commit();
+		return null;
+	}
+
+
+	@Override
+	public boolean delete(String bcode) throws BookStoreException {
+		boolean isDone = false;
+		 Book b = em.find(Book.class, bcode);
+         if (b != null) {
+             EntityTransaction txn = em.getTransaction();
+             txn.begin();
+             em.remove(b);
+             txn.commit();
+         }
+		return isDone;
+	}
+
+
+	@Override
+	public Book get(String bcode) throws BookStoreException {
+EntityManager em = JPAUtil.getEntityManager();
+		
+		String jpql = "SELECT b.bcode, b.title, b.publishDate, b.price FROM Book b";
+		
+		TypedQuery<Object[]> tqry = em.createQuery(jpql, Object[].class);
+		
+
+		List<Object[]> bkList = tqry.getResultList();
+		
+		for(Object[] record : bkList) {
+			System.out.printf("%-5s%-15s%-15s%-15s\n",record[0],record[1],record[2],record[3]);
+		}
+		return null;
+	}
+
+
+	@Override
+	public List<Book> getAll() throws BookStoreException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean update(Book book) throws BookStoreException {
+		TypedQuery<Book> tqry = em.createNamedQuery("specific_books", Book.class);
+		tqry.setParameter(1, );
+		tqry.setParameter(2, 50000.0);
+
+		List<Book> books = tqry.getResultList();
+
+		if (books.isEmpty()) {
+			System.out.println("No books found");
+		} else {
+			books.forEach(System.out::println);
+		}
+		return false;
+	}
+
+
+	@Override
+	public void persist() throws BookStoreException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

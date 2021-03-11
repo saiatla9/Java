@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+        <bean id="gsBean"
+        	class = "com.cg.idx.service.GreetServiceImpl"/>
+        	
+        <bean id="gsaBean"
+        	class = "com.cg.idx.service.GreetServiceArgumentedImpl">
+        	<property name="greetNote" value="Namasthe"/>
+        </bean>
+        <bean id="gnps"
+        	class = "com.cg.idx.service.GreetNoteProviderStandardImpl" />
+        	
+        <bean id="gntb"
+        	class ="com.cg.idx.service.GreetNoteProviderTimeBasedImpl"/>
+        <bean id="gsadvBean"
+        	class = "com.cg.idx.service.GreetServiceAdvancedImpl">
+        	
+        	<!-- <property name="greetNoteProvider" rerf = "gnps"/> -->
+        	
+        	<property name ="greetNoteProvider" ref ="gntb"/>
+        </bean>
+        
+          
+</beans>

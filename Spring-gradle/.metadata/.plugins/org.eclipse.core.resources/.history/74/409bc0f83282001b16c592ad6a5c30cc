@@ -1,0 +1,17 @@
+package com.cg.idx.ui;
+
+import com.cg.idx.service.GreetServiceImpl;
+import com.cg.idx.service.IGreetService;
+
+public class App1 {
+
+	public static void main(String[] args) {
+		GreetServiceImpl gs1 = new GreetServiceImpl();
+		System.out.println(gs1.getGreeting("Bhargava"));
+		
+		//program to interface method
+		IGreetService gs2 = new GreetServiceImpl();
+		System.out.println(gs2.getGreeting("Amrutha"));
+	}
+
+}
